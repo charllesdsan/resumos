@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #eceae4; padding: 40px 24px; color: #1a1a18; }
+  .page { max-width: 680px; margin: 0 auto; background: #fff; border-radius: 16px; padding: 48px 52px; box-shadow: 0 6px 40px rgba(0,0,0,0.10); }
+  .page-header { margin-bottom: 8px; }
+  .page-header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; }
+  .page-header p { font-size: 12px; color: #999; margin-top: 5px; }
+  hr.rule { border: none; border-top: 2px solid #f0ede8; margin: 16px 0 20px; }
+
+  .group-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin: 22px 0 10px;
+  }
+  .group-desc { font-size: 12px; color: #888; margin: -6px 0 12px; line-height: 1.5; }
+
+  .card { display: grid; grid-template-columns: 3px 1fr; border: 1px solid #ebebeb; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+  .accent { width: 3px; }
+  .card-inner { padding: 13px 16px; }
+  .card-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 5px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 7px; }
+  .kw { font-size: 10.5px; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+  .desc { font-size: 12px; color: #555; line-height: 1.6; }
+  .desc strong { color: #222; font-weight: 600; }
+  .example { margin-top: 5px; font-size: 11px; color: #888; font-style: italic; }
+
+  /* Criacionais — Amber */
+  .t1 .accent { background: #ba7517; } .t1 .kw { background: #faeeda; color: #854f0b; }
+  .t1-title { color: #854f0b; }
+  /* Estruturais — Blue */
+  .t2 .accent { background: #378add; } .t2 .kw { background: #e6f1fb; color: #185fa5; }
+  .t2-title { color: #185fa5; }
+  /* Comportamentais — Purple */
+  .t3 .accent { background: #7f77dd; } .t3 .kw { background: #eeedfe; color: #534ab7; }
+  .t3-title { color: #534ab7; }
+
+  .page-footer { margin-top: 24px; padding-top: 14px; border-top: 1px solid #ebebeb; font-size: 11px; color: #ccc; text-align: center; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; border-radius: 0; padding: 32px 40px; max-width: 100%; }
+    .card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header">
+    <h1>Padrões de Projeto OO</h1>
+    <p>Engenharia de Software · Principais padrões GoF — Criacionais, Estruturais e Comportamentais</p>
+  </div>
+  <hr class="rule">
+
+  <!-- ══ CRIACIONAIS ══ -->
+  <div class="group-title t1-title">Criacionais — como os objetos são criados</div>
+  <p class="group-desc">Abstraem e controlam o processo de instanciação, tornando o sistema independente de como os objetos são criados.</p>
+
+  <div class="card t1">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Singleton</div>
+      <div class="keywords"><span class="kw">instância única</span><span class="kw">acesso global</span><span class="kw">controlado</span></div>
+      <div class="desc">Garante que uma classe tenha <strong>apenas uma instância</strong> em todo o sistema, com um ponto de acesso global. O construtor é privado e a instância é obtida via método estático.</div>
+      <div class="example">Ex: Conexão com banco de dados, gerenciador de configurações</div>
+    </div>
+  </div>
+
+  <div class="card t1">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Factory Method</div>
+      <div class="keywords"><span class="kw">delega criação</span><span class="kw">subclasse decide</span><span class="kw">polimorfismo</span></div>
+      <div class="desc">Define uma <strong>interface para criar objetos</strong>, mas deixa as subclasses decidirem qual classe instanciar. Desacopla o código que usa o objeto do código que o cria.</div>
+      <div class="example">Ex: LoggerFactory que cria FileLogger ou DatabaseLogger conforme o contexto</div>
+    </div>
+  </div>
+
+  <div class="card t1">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Abstract Factory</div>
+      <div class="keywords"><span class="kw">família de objetos</span><span class="kw">sem concreção</span><span class="kw">consistência</span></div>
+      <div class="desc">Cria <strong>famílias de objetos relacionados</strong> sem especificar suas classes concretas. Garante que objetos de uma mesma família sejam usados juntos de forma consistente.</div>
+      <div class="example">Ex: UIFactory que cria Button + Checkbox + TextField para Windows ou MacOS</div>
+    </div>
+  </div>
+
+  <div class="card t1">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Builder</div>
+      <div class="keywords"><span class="kw">construção por etapas</span><span class="kw">objeto complexo</span><span class="kw">fluente</span></div>
+      <div class="desc">Separa a <strong>construção de um objeto complexo</strong> de sua representação, permitindo criar diferentes variações usando o mesmo processo de construção passo a passo.</div>
+      <div class="example">Ex: PedidoBuilder.comCliente().comItem().comDesconto().build()</div>
+    </div>
+  </div>
+
+  <div class="card t1">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Prototype</div>
+      <div class="keywords"><span class="kw">clonar</span><span class="kw">cópia</span><span class="kw">evita recriação</span></div>
+      <div class="desc">Cria novos objetos <strong>clonando uma instância existente</strong> (protótipo). Útil quando a criação do zero é custosa e o novo objeto é similar a um já existente.</div>
+      <div class="example">Ex: Clonar um objeto Configuração já populado para criar uma nova variante</div>
+    </div>
+  </div>
+
+  <!-- ══ ESTRUTURAIS ══ -->
+  <div class="group-title t2-title">Estruturais — como os objetos são compostos</div>
+  <p class="group-desc">Lidam com a composição de classes e objetos para formar estruturas maiores e mais flexíveis.</p>
+
+  <div class="card t2">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Adapter</div>
+      <div class="keywords"><span class="kw">compatibilidade</span><span class="kw">wrapper</span><span class="kw">interfaces distintas</span></div>
+      <div class="desc">Converte a interface de uma classe em outra esperada pelo cliente. Permite que classes com <strong>interfaces incompatíveis</strong> trabalhem juntas sem alterar seu código original.</div>
+      <div class="example">Ex: Adapter que converte XML em JSON para integrar dois sistemas legados</div>
+    </div>
+  </div>
+
+  <div class="card t2">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Decorator</div>
+      <div class="keywords"><span class="kw">adiciona comportamento</span><span class="kw">em tempo de execução</span><span class="kw">alternativa à herança</span></div>
+      <div class="desc">Anexa <strong>responsabilidades adicionais</strong> a um objeto dinamicamente, sem alterar sua classe. É uma alternativa flexível à herança para estender funcionalidades.</div>
+      <div class="example">Ex: Texto → NegritoDecorator → ItálicoDecorator → resultado formatado</div>
+    </div>
+  </div>
+
+  <div class="card t2">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Facade</div>
+      <div class="keywords"><span class="kw">simplifica</span><span class="kw">interface única</span><span class="kw">subsistema complexo</span></div>
+      <div class="desc">Fornece uma <strong>interface simplificada</strong> para um subsistema complexo. O cliente interage com a fachada sem precisar conhecer os detalhes internos do sistema.</div>
+      <div class="example">Ex: HomeTheaterFacade que orquestra TV, Som, Projetor e Luzes com um comando</div>
+    </div>
+  </div>
+
+  <div class="card t2">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Composite</div>
+      <div class="keywords"><span class="kw">árvore</span><span class="kw">todo-parte</span><span class="kw">trata igual</span></div>
+      <div class="desc">Compõe objetos em <strong>estruturas de árvore</strong> para representar hierarquias todo-parte. Permite tratar objetos individuais e composições de forma uniforme.</div>
+      <div class="example">Ex: Sistema de arquivos onde Arquivo e Pasta compartilham a mesma interface</div>
+    </div>
+  </div>
+
+  <div class="card t2">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Proxy</div>
+      <div class="keywords"><span class="kw">substituto</span><span class="kw">controle de acesso</span><span class="kw">lazy loading</span></div>
+      <div class="desc">Fornece um <strong>substituto ou representante</strong> de outro objeto para controlar o acesso a ele. Pode adicionar cache, controle de acesso ou carregamento sob demanda.</div>
+      <div class="example">Ex: ImageProxy que carrega a imagem real somente quando ela for exibida</div>
+    </div>
+  </div>
+
+  <!-- ══ COMPORTAMENTAIS ══ -->
+  <div class="group-title t3-title">Comportamentais — como os objetos se comunicam</div>
+  <p class="group-desc">Definem padrões de comunicação e responsabilidade entre objetos, tornando as interações mais flexíveis.</p>
+
+  <div class="card t3">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Observer</div>
+      <div class="keywords"><span class="kw">notificação</span><span class="kw">evento</span><span class="kw">publish-subscribe</span></div>
+      <div class="desc">Define uma dependência um-para-muitos: quando um objeto muda de estado, todos os seus <strong>dependentes são notificados automaticamente</strong>. Base do modelo de eventos.</div>
+      <div class="example">Ex: Planilha notifica Gráfico e Tabela quando um dado é alterado</div>
+    </div>
+  </div>
+
+  <div class="card t3">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Strategy</div>
+      <div class="keywords"><span class="kw">algoritmo intercambiável</span><span class="kw">encapsula comportamento</span><span class="kw">flexível</span></div>
+      <div class="desc">Define uma família de algoritmos, encapsula cada um e os torna <strong>intercambiáveis em tempo de execução</strong>. O cliente escolhe a estratégia sem alterar o código que a usa.</div>
+      <div class="example">Ex: Pagamento com estratégia Boleto, Cartão ou Pix trocável dinamicamente</div>
+    </div>
+  </div>
+
+  <div class="card t3">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Command</div>
+      <div class="keywords"><span class="kw">encapsula ação</span><span class="kw">desfazer/refazer</span><span class="kw">fila de operações</span></div>
+      <div class="desc">Encapsula uma <strong>solicitação como objeto</strong>, permitindo parametrizar clientes, enfileirar operações, registrar logs e suportar operações desfazíveis (undo/redo).</div>
+      <div class="example">Ex: Editor de texto com comandos Copiar, Colar e Desfazer como objetos</div>
+    </div>
+  </div>
+
+  <div class="card t3">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Template Method</div>
+      <div class="keywords"><span class="kw">esqueleto fixo</span><span class="kw">subclasse personaliza</span><span class="kw">inversão de controle</span></div>
+      <div class="desc">Define o <strong>esqueleto de um algoritmo</strong> na superclasse, deixando que subclasses preencham etapas específicas sem alterar a estrutura geral do processo.</div>
+      <div class="example">Ex: RelatorioBase define abre→processa→fecha; subclasse define como processa</div>
+    </div>
+  </div>
+
+  <div class="card t3">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Iterator</div>
+      <div class="keywords"><span class="kw">percorre coleção</span><span class="kw">sem expor estrutura</span><span class="kw">sequencial</span></div>
+      <div class="desc">Fornece uma forma de <strong>percorrer elementos</strong> de uma coleção sequencialmente sem expor sua estrutura interna (lista, árvore, grafo etc.).</div>
+      <div class="example">Ex: foreach que percorre uma lista encadeada sem conhecer sua implementação</div>
+    </div>
+  </div>
+
+  <div class="card t3">
+    <div class="accent"></div>
+    <div class="card-inner">
+      <div class="card-title">Chain of Responsibility</div>
+      <div class="keywords"><span class="kw">cadeia de handlers</span><span class="kw">desacopla remetente</span><span class="kw">passa adiante</span></div>
+      <div class="desc">Passa uma solicitação ao longo de uma <strong>cadeia de handlers</strong>. Cada handler decide processar ou repassar ao próximo, desacoplando quem envia de quem processa.</div>
+      <div class="example">Ex: Cadeia de validação: autenticação → autorização → rate limit → controller</div>
+    </div>
+  </div>
+
+  <div class="page-footer">Engenharia de Software · Padrões de Projeto GoF · Referência rápida</div>
+</div>
+</body>
+</html>
