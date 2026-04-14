@@ -1,22 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
     <title>Meus Resumos</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background: #2980b9;
+            transform: translateX(5px);
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Meus Resumos</h1>
+    <div class="container">
+        <h1>📚 Meus Resumos</h1>
 
-    <h2>Engenharia de Software</h2>
-    
-    <ul>
-        <li>
-            <a href="uml-diagramas.html">Diagramas UML</a>
-        </li>
-        <li>
-            <a href="uml-relacionamentos.html">Relacionamentos UML</a>
-        </li>
-    </ul>
+        <div class="section">
+            <h2>Engenharia de Software</h2>
+
+            <ul>
+                <li>
+                    <a href="uml-diagramas.html">📊 Diagramas UML</a>
+                </li>
+                <li>
+                    <a href="uml-relacionamentos.html">🔗 Relacionamentos UML</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 </body>
 </html>
